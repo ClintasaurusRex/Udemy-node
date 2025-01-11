@@ -9,8 +9,8 @@ app.get('/', (req, res) => {
 });
 
 app.post('/', (req, res) => {
-  res.send('You can post to the endpoing...');
-}); // hell
+  res.send('You can post to the endpoint...');
+});
 
 const PORT = 3000;
 app.listen(PORT, () => {
