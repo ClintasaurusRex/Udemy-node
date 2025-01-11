@@ -1,8 +1,21 @@
 const fs = require('fs');
 const express = require('express');
-const app = express();
+const { nextTick } = require('process');
 
+const app = express();
 app.use(express.json()); // Middleware
+
+// Creating our own MIDDLEWARE: This applies to every single route
+
+app.use((req, res, next) => {
+  console.log('Hello from the middleware!!!!!!!!!!!!!!');
+  next();
+});
+
+app.use((req, res, next) => {
+  req.requestTime = new Date().toISOString();
+  next();
+});
 
 // app.get('/', (req, res) => {
 //   res
@@ -19,8 +32,10 @@ const tours = JSON.parse(
 );
 
 const getAllTours = (req, res) => {
+  console.log(req.requestTime);
   res.status(200).json({
     status: 'success',
+    requestedAt: req.requestTime,
     results: tours.length,
     data: {
       tours: tours,
@@ -106,6 +121,7 @@ const deleteTour = (req, res) => {
 
 // app.get('/api/v1/tours', getAllTours); // This is the same as the app.route below
 // app.post('/api/v1/tours', createTour);
+
 // app.get('/api/v1/tours/:id/', getTour);
 // app.patch('/api/v1/tours/:id', updateTour);
 // app.delete('/api/v1/tours/:id', deleteTour);
