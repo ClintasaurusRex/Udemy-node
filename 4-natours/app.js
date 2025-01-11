@@ -2,6 +2,8 @@ const fs = require('fs');
 const express = require('express');
 const app = express();
 
+app.use(express.json()); // Middleware
+
 // app.get('/', (req, res) => {
 //   res
 //     .status(200)
@@ -24,6 +26,10 @@ app.get('/api/v1/tours', (req, res) => {
       tours: tours,
     },
   });
+});
+
+app.post('/api/v1/tours', (req, res) => {
+  res.status(200).send;
 });
 
 const PORT = 3000;
