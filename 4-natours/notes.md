@@ -103,3 +103,58 @@ app.delete('/api/tours/:id', (req, res) => {
 
 - Stateless:
   -- All state is handled on the client. This that each request must contain all the info necessary to process the request. This means that the server does not store any state about the client. This is in contrast to stateful APIs, where the server may store state about the client.
+
+# Middleware in Express.js
+
+## What is Middleware?
+
+- Functions that have access to the request object (req), response object (res), and the next middleware function (next)
+- Executes code between receiving a request and sending a response
+- Can modify req/res objects
+- Can end request-response cycle
+- Must call next() to pass control to next middleware
+
+## How Middleware Works
+
+- Executes in sequence ("middleware stack")
+- Order matters - middleware runs in the order defined
+- Global middleware applies to all routes
+- Route-specific middleware only applies to specified routes
+
+## Examples
+
+### Global Middleware Logger
+
+````javascript
+// Body parser
+app.use(express.json());
+
+// Serve static files
+app.use(express.static('public'));
+
+// Parse URL-encoded bodies
+app.use(express.urlencoded({ extended: true }));
+
+
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.path}`);
+  next();
+});
+
+
+const checkBody = (req, res, next) => {
+  if (!req.body.name) {
+    return res.status(400).json({
+      status: 'fail',
+      message: 'Missing name'
+    });
+  }
+  next();
+};
+
+app.post('/api/tours', checkBody, (req, res) => {
+  // Handler code here
+});
+
+```
+````
