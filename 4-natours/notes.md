@@ -98,3 +98,8 @@ app.delete('/api/tours/:id', (req, res) => {
 - Follow RESTful naming convent- ions
 
 - Implement proper validation
+
+# Stateless RESTful API
+
+- Stateless:
+  -- All state is handled on the client. This that each request must contain all the info necessary to process the request. This means that the server does not store any state about the client. This is in contrast to stateful APIs, where the server may store state about the client.
