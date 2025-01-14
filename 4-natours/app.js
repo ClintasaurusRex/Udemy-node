@@ -187,7 +187,7 @@ tourRouter
 
 // prettier-ignore
 userRouter
-.get('/')
+.route('/')
 .get(getAllUsers)
 .post(createUser)
 
@@ -200,7 +200,6 @@ userRouter
 
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
-
 // 4) SERVER
 const PORT = 3000;
 app.listen(PORT, () => {
