@@ -9,6 +9,7 @@ const app = express();
 // 1) Middlewares
 app.use(morgan('dev'));
 app.use(express.json()); // Middleware
+app.use(express.static(`${__dirname}/public`));
 
 // Creating our own MIDDLEWARE: This applies to every single route
 
