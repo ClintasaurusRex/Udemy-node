@@ -1,5 +1,4 @@
 const fs = require('fs');
-const { validateHeaderName } = require('http');
 
 const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/../dev-data/data/tours-simple.json`)
@@ -35,13 +34,6 @@ exports.getTour = (req, res) => {
 
   const tour = tours.find((el) => el.id === id);
 
-  if (!tour) {
-    return res.status(404).json({
-      status: 'fail',
-      message: 'Invalid ID',
-    });
-  }
-
   // Add the success response
   res.status(200).json({
     status: 'success',
@@ -76,13 +68,6 @@ exports.createTour = (req, res) => {
 };
 
 exports.updateTour = (req, res) => {
-  if (req.params.id * 1 > tours.length) {
-    return res.status(404).json({
-      status: 'fail',
-      message: 'Invalid ID',
-    });
-  }
-
   res.status(200).json({
     status: 'success',
     data: { tour: '<Updated tour here...>' },
