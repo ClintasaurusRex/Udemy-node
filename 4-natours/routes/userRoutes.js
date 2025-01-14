@@ -2,6 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
+// Route Handlers
 const getAllUsers = (req, res) => {
   res.status(500).json({
     status: 'error',

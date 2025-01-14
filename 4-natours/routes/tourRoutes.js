@@ -5,6 +5,7 @@ const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/../dev-data/data/tours-simple.json`)
 );
 
+// Route Handlers
 const getAllTours = (req, res) => {
   console.log(req.requestTime);
   res.status(200).json({
@@ -96,8 +97,17 @@ const deleteTour = (req, res) => {
 const router = express.Router();
 
 // Define routes
-router.route('/').get(getAllTours).post(createTour);
+// prettier-ignore
+router
+.route('/')
+.get(getAllTours)
+.post(createTour);
 
-router.route('/:id').get(getTour).patch(updateTour).delete(deleteTour);
+// prettier-ignore
+router
+.route('/:id')
+.get(getTour)
+.patch(updateTour)
+.delete(deleteTour);
 
 module.exports = router;
