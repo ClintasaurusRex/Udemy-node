@@ -164,8 +164,8 @@ const deleteUser = (req, res) => {
 // app.patch('/api/v1/tours/:id', updateTour);
 // app.delete('/api/v1/tours/:id', deleteTour);
 
-app.use('/api/v1/tours', tourRouter);
 const tourRouter = express.Router();
+app.use('/api/v1/tours', tourRouter);
 
 // tourRouter.route('/api/v1/tours').get(getAllTours).post(createTour); // before tourRouter middleware\
 // prettier-ignore
